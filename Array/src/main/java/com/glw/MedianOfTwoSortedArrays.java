@@ -1,4 +1,4 @@
-package com.glw.array;
+package com.glw;
 
 import java.util.Arrays;
 
