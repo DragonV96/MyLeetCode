@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class ContainerWithMostWater {
 
+    // 我的答案
     public static int maxArea(int[] height) {
         int arrLength = height.length;
         if (arrLength != 0) {
@@ -48,9 +49,24 @@ public class ContainerWithMostWater {
         return 0;
     }
 
+    // 官方答案
+    public static int maxAreaOffice(int[] height) {
+        int maxarea = 0, l = 0, r = height.length - 1;
+        while (l < r) {
+            maxarea = Math.max(maxarea, Math.min(height[l], height[r]) * (r - l));
+            if (height[l] < height[r])
+                l++;
+            else
+                r--;
+        }
+        return maxarea;
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{1,8,6,2,5,4,8,3,7};
-        int result = maxArea(nums);
-        System.out.println("我的答案   数组：" + Arrays.toString(nums) + "结果：" + result);
+        int result1 = maxArea(nums);
+        int result2 = maxAreaOffice(nums);
+        System.out.println("我的答案   数组：" + Arrays.toString(nums) + "结果：" + result1);
+        System.out.println("官方答案   数组：" + Arrays.toString(nums) + "结果：" + result2);
     }
 }
