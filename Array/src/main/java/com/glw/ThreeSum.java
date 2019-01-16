@@ -1,7 +1,6 @@
 package com.glw;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static com.glw.ContainerWithMostWater.maxArea;
 
@@ -20,14 +19,57 @@ import static com.glw.ContainerWithMostWater.maxArea;
  * ]
  */
 public class ThreeSum {
-    public static List<List<Integer>> threeSum(int[] nums) {
-
-        return null;
+    public static Set<List<Integer>> threeSum(int[] nums) {
+        int length = nums.length;
+        List<List<Integer>> resultList = new ArrayList<>();
+        if (length > 2) {
+            Arrays.sort(nums);
+            int i = 0;
+            int[] temp = new int[3];
+            for (; i < nums.length; i++) {
+                int target = -nums[i];
+                int left = i + 1;
+                int right = length - 1;
+                while (left < right) {
+                    int sum = nums[left] + nums[right];
+                    if (sum > target) {
+                        right--;
+                    } else if (sum < target) {
+                        left++;
+                    } else {
+                        List<Integer> elements = new ArrayList<>(3);
+                        temp[0] = nums[i];
+                        temp[1] = nums[left];
+                        temp[2] = nums[right];
+                        elements.add(temp[0]);
+                        elements.add(temp[1]);
+                        elements.add(temp[2]);
+                        resultList.add(elements);
+                        if (left < right && nums[left] == temp[1]) {
+                            left++;
+                        } else  if (left > right && nums[right] == temp[2]) {
+                            right--;
+                        }
+                    }
+                    if (i + 1 < length && nums[i + 1] == nums[i]) {
+                        i++;
+                    }
+                }
+            }
+        }
+        Set<List<Integer>> result = new HashSet<>();
+        for (int i = 0; i < resultList.size() - 1; i++) {
+            result.add(resultList.get(i));
+        }
+        return result;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,8,6,2,5,4,8,3,7};
-        List result = threeSum(nums);
-        System.out.println("我的答案   数组：" + Arrays.toString(nums) + "结果：" + result);
+        int[] nums1 = new int[]{0,0,0,0};
+        Set result1 = threeSum(nums1);
+        System.out.println("我的答案1   数组：" + Arrays.toString(nums1) + "\n结果：" + result1);
+        int[] nums2 = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        Set result2 = threeSum(nums2);
+        System.out.println("我的答案2   数组：" + Arrays.toString(nums2) + "\n结果：" + result2);
     }
 }
