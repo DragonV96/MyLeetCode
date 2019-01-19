@@ -64,6 +64,6 @@ public class  RemoveDuplicatesfromSortedArray{
     public static void main(String[] args) {
         int[] nums = new int[]{0,0,0,1,1,1,2};
         int result = removeDuplicatesOffice(nums);
-        System.out.println("我的答案1   数组：" + Arrays.toString(nums) + "\n结果：" + result);
+        System.out.println("我的答案   数组：" + Arrays.toString(nums) + "\n结果：" + result);
     }
 }
