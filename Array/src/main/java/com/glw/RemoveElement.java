@@ -62,14 +62,23 @@ public class RemoveElement {
     }
 
     // 官方答案
-
+    public static int removeElementOffice(int[] nums, int val) {
+        int i = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] != val) {
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+        return i;
+    }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{};
-        int result = removeElement(nums, 5);
+        int[] nums = new int[]{0,1,2,2,3,0,2,2};
+        int result = removeElement(nums, 2);
         System.out.println("我的答案：   数组：" + Arrays.toString(nums) + "\n结果：" + result);
         int[] nums1 = new int[]{0,1,2,2,3,0,2,2};
-        int result1 = removeElement(nums1, 2);
-        System.out.println("我的答案：   数组：" + Arrays.toString(nums1) + "\n结果：" + result1);
+        int result1 = removeElementOffice(nums1, 2);
+        System.out.println("官方答案：   数组：" + Arrays.toString(nums1) + "\n结果：" + result1);
     }
 }
