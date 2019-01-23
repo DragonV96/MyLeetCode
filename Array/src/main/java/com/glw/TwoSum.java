@@ -8,7 +8,7 @@ import java.util.Map;
  * Create by glw
  * 2019/1/9 23:45
  * 1. Two Sum
- * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+ * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
  * 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
  *
  * 示例:
@@ -17,6 +17,7 @@ import java.util.Map;
  * 所以返回 [0, 1]
  */
 public class TwoSum {
+
     //我的答案
     public static int[] twoSum(int[] nums, int target) {
         int[] temp = new int[2];
@@ -38,7 +39,7 @@ public class TwoSum {
     public static int[] twoSumOffice(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
+            int complement = target - nums[i];  // 将求两个值索引的问题转换为求单个值索引的问题
             if (map.containsKey(complement)) {
                 return new int[] { map.get(complement), i };
             }
