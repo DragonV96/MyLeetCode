@@ -17,13 +17,13 @@ package com.glw;
  */
 public class LongestPalindromicSubstring {
     public static String longestPalindrome(String s) {
-        if (s == null || s.length() < 1) return "";
+        if (s == null || s.length() < 1) return "";     // 字符串不存在时返回空
         int start = 0, end = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int len1 = expandAroundCenter(s, i, i);
-            int len2 = expandAroundCenter(s, i, i + 1);
-            int len = Math.max(len1, len2);
-            if (len > end - start) {
+        for (int i = 0; i < s.length(); i++) {  // 循环指针i
+            int len1 = expandAroundCenter(s, i, i);    // 判断偶数回文串
+            int len2 = expandAroundCenter(s, i, i + 1);    // 判断奇数回文串
+            int len = Math.max(len1, len2);     // 取出长度最长的回文字符串长度值
+            if (len > end - start) {    // 比较当前回文串的长度和上一个回文串的长度，若大于上一个，则将start和end设置为当前最长的
                 start = i - (len - 1) / 2;
                 end = i + len / 2;
             }
@@ -31,6 +31,7 @@ public class LongestPalindromicSubstring {
         return s.substring(start, end + 1);
     }
 
+    // 取以left和right为中心的回文串，并返回它的长度值
     private static int expandAroundCenter(String s, int left, int right) {
         int l = left, r = right;
         while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
